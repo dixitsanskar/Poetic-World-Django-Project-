@@ -78,8 +78,12 @@ WSGI_APPLICATION = 'personal_blog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'poetic_world', 
+        'USER': 'poetic_world_user',
+        'PASSWORD': 'pVzcuZG1uNcNPcl5X8RukyyhIUNBO2nT',
+        'HOST': 'dpg-crgt6688fa8c738p18d0-a.oregon-postgres.render.com', 
+        'PORT': '5432',
     }
 }
 
