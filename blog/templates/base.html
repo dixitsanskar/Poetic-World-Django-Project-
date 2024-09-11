@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Poetic World</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+  
+    <style>
+        :root {
+            --bg-color: #F5F7F8;
+            --text-color: black;
+            --card-bg-color: white;
+            --button-bg-color: black;
+            --button-text-color: white;
+        }
+
+        .dark-theme {
+            --bg-color: #1d1f21;
+            --text-color: #c5c6c7;
+            --card-bg-color: #2e2f30;
+            --button-bg-color: #c5c6c7;
+            --button-text-color: black;
+            background: #1d1f21;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            margin-left: 5%;
+            margin-right: 5%;
+            background: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
+        }
+
+        .card {
+            border-radius: 20px;
+            padding: 20px;
+            background-color: var(--card-bg-color);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            margin: 30px;
+            
+        }
+
+        .theme-toggle-button {
+            background-color: var(--button-bg-color);
+            color: var(--button-text-color);
+            padding: 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        svg {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body >
+
+<div class="card">
+    <h1 style="text-align: center;">Unheard Words, Unseen Souls</h1>
+    <br>
+    <p style="text-align: center;">
+        <b style="font-size: 30px;">Hello!👋🏻</b><br>
+        Each poem you'll find here is a window into the human experience—love, loss, hope, and everything in between.
+    </p>
+    
+   
+
+    <div style="font-weight: 700; display:flex;justify-content:center;align-items:center;gap:2rem;">
+        <a href="{% url 'blog_index' %}" style="text-decoration: none; margin-left: 85%; background-color: var(--button-bg-color); padding: 10px; border-radius: 3px; color: var(--button-text-color);">Home</a>
+     <!-- Sun SVG (for light theme) -->
+     <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+
+    <!-- Moon SVG (for dark theme) -->
+    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+    </div>
+    <div style="background-color: black; white: 100%; height: 1px; margin-top: 20px;"></div>
+
+
+{% block page_title %}{% endblock page_title %}
+{% block page_content %}{% endblock page_content %}
+</div>
+<script>
+    const sunIcon = document.getElementById('sun');
+    const moonIcon = document.getElementById('moon');
+    const body = document.body;
+
+    // Check and apply the saved theme from localStorage
+    if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark-theme');
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+    }
+
+    moonIcon.addEventListener('click', () => {
+        body.classList.add('dark-theme');
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+        localStorage.setItem('theme', 'dark');
+    });
+
+    sunIcon.addEventListener('click', () => {
+        body.classList.remove('dark-theme');
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+        localStorage.setItem('theme', 'light');
+    });
+</script>
+
+</body>
+</html>
